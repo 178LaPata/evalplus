@@ -15,7 +15,7 @@ from evalplus.data.utils import (
 
 MBPP_PLUS_VERSION = "v0.1.0"
 MBPP_OVERRIDE_PATH = os.environ.get("MBPP_OVERRIDE_PATH", None)
-MBPP_FILENAME = "MbppPlus_samples_2-4.jsonl"
+MBPP_FILENAME = "MbppPlus_samples_0-0.jsonl"
 
 
 def _ready_mbpp_plus_path(mini=False, noextreme=False) -> str:
