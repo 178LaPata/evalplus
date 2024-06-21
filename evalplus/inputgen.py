@@ -7,9 +7,9 @@ import argparse
 import json
 import os
 
-from evalplus.data.mbpp import mbpp_serialize_inputs
-from evalplus.gen.chatgpt_gen import ChatGPTGen
-from evalplus.gen.type_mut import TypedMutGen
+from data.mbpp import mbpp_serialize_inputs
+from gen.chatgpt_gen import ChatGPTGen
+from gen.type_mut import TypedMutGen
 
 
 class SetEncoder(json.JSONEncoder):
@@ -88,14 +88,14 @@ def main():
 
     problems = None
     if args.dataset == "humaneval":
-        from evalplus.data import get_human_eval_plus
+        from data import get_human_eval_plus
 
         # Allow it to be incomplete
         problems = get_human_eval_plus(err_incomplete=False)
         args.output = args.output or "HumanEvalPlusInputs.jsonl"
 
     if args.dataset == "mbpp":
-        from evalplus.data import get_mbpp_plus
+        from data import get_mbpp_plus
 
         problems = get_mbpp_plus(err_incomplete=False)
         args.output = args.output or "MbppPlusInput.jsonl"

@@ -5,10 +5,10 @@ from typing import List
 import openai
 from openai.types.chat import ChatCompletion
 
-from evalplus.data.utils import to_raw
-from evalplus.gen import BaseGen
-from evalplus.gen.util import trusted_check_exec
-from evalplus.gen.util.openai_request import make_auto_request
+from data.utils import to_raw
+from gen import BaseGen
+from gen.util import trusted_check_exec
+from gen.util.openai_request import make_auto_request
 
 
 class ChatGPTGen(BaseGen):

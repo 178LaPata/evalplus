@@ -17,11 +17,11 @@ from rich.progress import (
 from rich.syntax import Syntax
 from termcolor import colored
 
-from evalplus.data import get_human_eval_plus, get_mbpp_plus
-from evalplus.data.mbpp import mbpp_serialize_inputs
-from evalplus.eval.utils import TimeoutException, reliability_guard, time_limit
-from evalplus.perf.config import CURATION_TIMEOUT_PER_TEST_SECOND, MEMORY_LIMIT_GB
-from evalplus.sanitize import syntax_check
+from data import get_human_eval_plus, get_mbpp_plus
+from data.mbpp import mbpp_serialize_inputs
+from eval.utils import TimeoutException, reliability_guard, time_limit
+from perf.config import CURATION_TIMEOUT_PER_TEST_SECOND, MEMORY_LIMIT_GB
+from sanitize import syntax_check
 
 
 # this is more of a hack... rather than a "verified" implementation

@@ -5,14 +5,14 @@ from typing import Any, Callable, List, Optional
 
 from cirron import Collector
 
-from evalplus.eval.utils import (
+from eval.utils import (
     TimeoutException,
     create_tempdir,
     reliability_guard,
     swallow_io,
     time_limit,
 )
-from evalplus.perf.config import MEMORY_LIMIT_GB, PROFILE_ROUNDS
+from perf.config import MEMORY_LIMIT_GB, PROFILE_ROUNDS
 
 
 def are_profiles_broken(profiles) -> bool:

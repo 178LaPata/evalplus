@@ -6,10 +6,10 @@ from statistics import median
 
 from tqdm import tqdm
 
-from evalplus.data import get_human_eval_plus, get_mbpp_plus
-from evalplus.data.mbpp import mbpp_deserialize_inputs, mbpp_serialize_inputs
-from evalplus.perf.config import CURATION_TIMEOUT_PER_TEST_SECOND
-from evalplus.perf.profile import are_profiles_broken, profile
+from data import get_human_eval_plus, get_mbpp_plus
+from data.mbpp import mbpp_deserialize_inputs, mbpp_serialize_inputs
+from perf.config import CURATION_TIMEOUT_PER_TEST_SECOND
+from perf.profile import are_profiles_broken, profile
 
 
 def script(solutions: str, output_profiled_solutions: str, pe_inputs: str = None):

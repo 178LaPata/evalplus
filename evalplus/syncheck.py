@@ -8,7 +8,7 @@ import traceback
 
 from termcolor import colored
 
-from evalplus.data import load_solutions
+from data import load_solutions
 
 
 def syntax_check(code, verbose=False):
@@ -28,12 +28,12 @@ def script(
     solutions = load_solutions(samples)
 
     if dataset == "humaneval":
-        from evalplus.data import get_human_eval_plus
+        from data import get_human_eval_plus
 
         dataset = get_human_eval_plus()
         dataset_name = "HumanEval"
     elif dataset == "mbpp":
-        from evalplus.data import get_mbpp_plus
+        from data import get_mbpp_plus
 
         dataset = get_mbpp_plus()
         dataset_name = "Mbpp"

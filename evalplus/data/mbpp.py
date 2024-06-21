@@ -5,7 +5,7 @@ from typing import Dict
 
 import wget
 
-from evalplus.data.utils import (
+from data.utils import (
     CACHE_DIR,
     completeness_check,
     get_dataset_metadata,
@@ -15,7 +15,7 @@ from evalplus.data.utils import (
 
 MBPP_PLUS_VERSION = "v0.1.0"
 MBPP_OVERRIDE_PATH = os.environ.get("MBPP_OVERRIDE_PATH", None)
-MBPP_FILENAME = "MbppPlus_samples_0-0.jsonl"
+MBPP_FILENAME = "MbppPlus_samples_1-3.jsonl"
 
 
 def _ready_mbpp_plus_path(mini=False, noextreme=False) -> str:
@@ -188,10 +188,6 @@ def get_mbpp_plus(err_incomplete=True, mini=False, noextreme=False) -> Dict[str,
 
     if err_incomplete:
         completeness_check("MBPP+", plus)
-
-    # Escrever o conteúdo no ficheiro "olarilas.json"
-    with open("olarilas.json", "w") as json_file:
-        json.dump(plus, json_file, indent=4)  # O parâmetro indent=4 é opcional, mas melhora a legibilidade do JSON
 
     return plus
 

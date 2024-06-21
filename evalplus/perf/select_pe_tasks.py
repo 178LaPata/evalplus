@@ -12,7 +12,7 @@ from rich.console import Console
 from rich.syntax import Syntax
 from termcolor import colored
 
-from evalplus.perf.config import MIN_REQUIRED_NUM_INSTRUCTION
+from perf.config import MIN_REQUIRED_NUM_INSTRUCTION
 
 
 def cv(time_costs: List[float]) -> float:

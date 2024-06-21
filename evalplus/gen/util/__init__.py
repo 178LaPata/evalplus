@@ -1,7 +1,7 @@
 import time
 from copy import deepcopy
 
-from evalplus.eval.utils import time_limit
+from eval.utils import time_limit
 
 
 def trusted_exec(code, inputs, entry_point, record_time=False, output_not_none=False):

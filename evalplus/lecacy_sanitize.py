@@ -1,6 +1,6 @@
 """Legacy version of post-processing LLM-generated Python code.
 This sanitizer is implemented using regex and string manipulation.
-You might want to use the latest tree-sitter-based sanitizer (evalplus.sanitize) instead.
+You might want to use the latest tree-sitter-based sanitizer (sanitize) instead.
 """
 
 import os
@@ -10,14 +10,14 @@ from typing import List, Optional
 
 from tqdm import tqdm
 
-from evalplus.data import (
+from data import (
     get_human_eval_plus,
     get_mbpp_plus,
     load_solutions,
     write_directory,
     write_jsonl,
 )
-from evalplus.syncheck import syntax_check
+from syncheck import syntax_check
 
 
 def remove_unindented_lines(

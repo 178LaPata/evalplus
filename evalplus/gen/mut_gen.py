@@ -2,8 +2,8 @@ import random
 from abc import abstractmethod
 from typing import Any, List
 
-from evalplus.gen import BaseGen
-from evalplus.gen.util import trusted_check_exec
+from gen import BaseGen
+from gen.util import trusted_check_exec
 
 
 class MutateGen(BaseGen):

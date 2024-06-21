@@ -8,14 +8,14 @@ from tqdm import tqdm
 from tree_sitter import Node
 from tree_sitter_languages import get_parser
 
-from evalplus.data import (
+from data import (
     get_human_eval_plus,
     get_mbpp_plus,
     load_solutions,
     write_directory,
     write_jsonl,
 )
-from evalplus.syncheck import syntax_check
+from syncheck import syntax_check
 
 CLASS_TYPE = "class_definition"
 FUNCTION_TYPE = "function_definition"

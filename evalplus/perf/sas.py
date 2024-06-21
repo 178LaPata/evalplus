@@ -9,7 +9,7 @@ from typing import Optional
 import openai
 from tqdm import tqdm
 
-from evalplus.data import get_human_eval_plus, get_mbpp_plus
+from data import get_human_eval_plus, get_mbpp_plus
 
 
 def fewshot_cot(

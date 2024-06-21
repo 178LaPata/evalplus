@@ -15,23 +15,23 @@ import numpy as np
 from termcolor import cprint
 from tqdm import tqdm
 
-from evalplus.data import (
+from data import (
     get_human_eval_plus,
     get_human_eval_plus_hash,
     get_mbpp_plus,
     get_mbpp_plus_hash,
     load_solutions,
 )
-from evalplus.data.mbpp import mbpp_serialize_inputs
-from evalplus.data.utils import CACHE_DIR
-from evalplus.eval import (
+from data.mbpp import mbpp_serialize_inputs
+from data.utils import CACHE_DIR
+from eval import (
     PASS,
     compatible_eval_result,
     estimate_pass_at_k,
     untrusted_check,
 )
-from evalplus.eval._special_oracle import MBPP_OUTPUT_NOT_NONE_TASKS
-from evalplus.gen.util import trusted_exec
+from eval._special_oracle import MBPP_OUTPUT_NOT_NONE_TASKS
+from gen.util import trusted_exec
 
 # 1st item: the status
 # 2nd item (optional): the detailed pass/fail boolean for each input
@@ -154,8 +154,7 @@ def evaluate(flags):
             problems = get_mbpp_plus(
                 mini=flags.mini, noextreme=flags.noextreme
             )
-            print(os.getcwd())
-            print(len(problems))
+
             dataset_hash = get_mbpp_plus_hash(
                 mini=flags.mini, noextreme=flags.noextreme
             )
@@ -212,6 +211,11 @@ def evaluate(flags):
                 n_samples += 1
             
             assert n_samples == len(remainings), "Missing problems in unfinished"
+            print("-------------------------_DEBUG_----------------------------------")
+            print(len(problems))
+            print(len(completion_id))
+            print("-------------------------_DEBUG_----------------------------------")
+
             assert len(completion_id) == len(problems), "Missing problems in samples"
 
             def stucking_checker():

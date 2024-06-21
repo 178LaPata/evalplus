@@ -3,7 +3,7 @@ import json
 import os
 from typing import Dict
 
-from evalplus.data.utils import (
+from data.utils import (
     CACHE_DIR,
     completeness_check,
     get_dataset_metadata,
@@ -29,7 +29,7 @@ def _ready_human_eval_plus_path(mini=False, noextreme=False, version="default") 
 
 
 def get_human_eval_plus_hash(mini=False, noextreme=False, version="default") -> str:
-    """Get the hash of HumanEvalPlus.
+    """Get the hash of Human
     Returns:
         str: The hash of HumanEvalPlus
     """
@@ -45,7 +45,7 @@ def get_human_eval_plus(
     """Get HumanEvalPlus locally.
     Args:
         err_incomplete (bool, optional): Whether to raise error if HumanEvalPlus is not complete. Defaults to True.
-        mini (bool, optional): Whether to use the mini version of HumanEvalPlus. Defaults to False.
+        mini (bool, optional): Whether to use the mini version of Human Defaults to False.
     Returns:
         List[Dict[str, str]]: List of dicts with keys "task_id", "prompt", "contract", "canonical_solution", "base_input"
     Notes:

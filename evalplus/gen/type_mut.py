@@ -6,8 +6,8 @@ from typing import Any, Dict, List, Set, Tuple
 
 from multipledispatch import dispatch
 
-from evalplus.gen.mut_gen import MutateGen
-from evalplus.gen.util import trusted_check_exec
+from gen.mut_gen import MutateGen
+from gen.util import trusted_check_exec
 
 MAX_MULTI_STEP_SIZE = 5
 MUTATE_BOUND_SIZE = 8
