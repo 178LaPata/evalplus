@@ -1,6 +1,6 @@
 import hashlib
 import json
-import os
+import os, sys
 from typing import Dict
 
 import wget
@@ -13,19 +13,20 @@ from evalplus.data.utils import (
     stream_jsonl,
 )
 
-MBPP_PLUS_VERSION = "v0.2.0"
+MBPP_PLUS_VERSION = "v0.1.0"
 MBPP_OVERRIDE_PATH = os.environ.get("MBPP_OVERRIDE_PATH", None)
+MBPP_FILENAME = "MbppPlus_samples_2-4.jsonl"
 
 
-def _ready_mbpp_plus_path(mini=False, noextreme=False, version="default") -> str:
+def _ready_mbpp_plus_path(mini=False, noextreme=False) -> str:
     assert mini is False, "Mini version of MBPP+ is not available yet."
 
     if MBPP_OVERRIDE_PATH:
         return MBPP_OVERRIDE_PATH
 
-    version = MBPP_PLUS_VERSION if version == "default" else version
-
-    url, plus_path = get_dataset_metadata("MbppPlus", version, mini, noextreme)
+    url, plus_path = get_dataset_metadata(
+        "MbppPlus", MBPP_PLUS_VERSION, mini, noextreme
+    )
     make_cache(url, plus_path)
 
     return plus_path
@@ -160,44 +161,46 @@ def mbpp_deserialize_inputs(task_id: str, inputs: list) -> list:
 
 def get_mbpp() -> Dict[str, Dict]:
     """Get sanitized MBPP from Google's Github repo."""
-    mbpp_path = os.path.join(CACHE_DIR, "sanitized-mbpp.json")
+    #mbpp_path = os.path.join(CACHE_DIR, "sanitized-mbpp.json")
 
-    if not os.path.exists(mbpp_path):
-        os.makedirs(CACHE_DIR, exist_ok=True)
+    #if not os.path.exists(mbpp_path):
+    #    os.makedirs(CACHE_DIR, exist_ok=True)
 
         # Install MBPP-sanitized from scratch
-        print("Downloading original MBPP dataset...")
-        wget.download(
-            "https://github.com/google-research/google-research/raw/master/mbpp/sanitized-mbpp.json",
-            mbpp_path,
-        )
+    #    print("Downloading original MBPP dataset...")
+    #    wget.download(
+    #        "https://github.com/google-research/google-research/raw/master/mbpp/sanitized-mbpp.json",
+    #        mbpp_path,
+    #    )
 
-    with open(mbpp_path, "r") as f:
+    with open("prompts/mbpp/"+ MBPP_FILENAME, "r") as f:
         mbpp = json.load(f)
 
     return {str(task["task_id"]): task for task in mbpp}
 
 
-def get_mbpp_plus(
-    err_incomplete=True, mini=False, noextreme=False, version="default"
-) -> Dict[str, Dict]:
-    plus_path = _ready_mbpp_plus_path(mini=mini, noextreme=noextreme, version=version)
-    plus = {task["task_id"]: task for task in stream_jsonl(plus_path)}
+def get_mbpp_plus(err_incomplete=True, mini=False, noextreme=False) -> Dict[str, Dict]:
+    plus = {task["task_id"]: task for task in stream_jsonl("prompts/mbpp/" + MBPP_FILENAME)}
+
     for task_id, task in plus.items():
         task["base_input"] = mbpp_deserialize_inputs(task_id, task["base_input"])
         task["plus_input"] = mbpp_deserialize_inputs(task_id, task["plus_input"])
 
     if err_incomplete:
         completeness_check("MBPP+", plus)
+
+    # Escrever o conteúdo no ficheiro "olarilas.json"
+    with open("olarilas.json", "w") as json_file:
+        json.dump(plus, json_file, indent=4)  # O parâmetro indent=4 é opcional, mas melhora a legibilidade do JSON
+
     return plus
 
-
-def get_mbpp_plus_hash(mini=False, noextreme=False, version="default") -> str:
+def get_mbpp_plus_hash(mini=False, noextreme=False) -> str:
     """Get the hash of MbppPlus.
     Returns:
         str: The hash of MbppPlus
     """
-    plus_path = _ready_mbpp_plus_path(mini=mini, noextreme=noextreme, version=version)
-    with open(plus_path, "rb") as f:
+    #plus_path = _ready_mbpp_plus_path(mini=mini, noextreme=noextreme)
+    with open("prompts/mbpp/"+MBPP_FILENAME, "rb") as f:
         plus = f.read()
     return hashlib.md5(plus).hexdigest()

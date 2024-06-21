@@ -152,16 +152,20 @@ def evaluate(flags):
             expected_output = get_groundtruth(problems, dataset_hash, [])
         elif flags.dataset == "mbpp":
             problems = get_mbpp_plus(
-                mini=flags.mini, noextreme=flags.noextreme, version=flags.version
+                mini=flags.mini, noextreme=flags.noextreme
             )
+            print(os.getcwd())
+            print(len(problems))
             dataset_hash = get_mbpp_plus_hash(
-                mini=flags.mini, noextreme=flags.noextreme, version=flags.version
+                mini=flags.mini, noextreme=flags.noextreme
             )
             expected_output = get_groundtruth(
                 problems,
                 dataset_hash,
                 MBPP_OUTPUT_NOT_NONE_TASKS,
             )
+
+
 
         results = {
             "date": datetime.now().strftime("%Y-%m-%d %H:%M"),
@@ -179,6 +183,7 @@ def evaluate(flags):
             print("Reading samples...")
             for sample in tqdm(load_solutions(flags.samples)):
                 task_id = sample["task_id"]
+
                 if task_id not in problems:
                     warn(
                         f"Task {task_id} is found in the samples but not found in the dataset"
@@ -205,7 +210,7 @@ def evaluate(flags):
                 futures.append(executor.submit(check_correctness, *args))
                 completion_id[task_id] += 1
                 n_samples += 1
-
+            
             assert n_samples == len(remainings), "Missing problems in unfinished"
             assert len(completion_id) == len(problems), "Missing problems in samples"
 
