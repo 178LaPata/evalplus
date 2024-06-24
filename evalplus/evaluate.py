@@ -211,11 +211,6 @@ def evaluate(flags):
                 n_samples += 1
             
             assert n_samples == len(remainings), "Missing problems in unfinished"
-            print("-------------------------_DEBUG_----------------------------------")
-            print(len(problems))
-            print(len(completion_id))
-            print("-------------------------_DEBUG_----------------------------------")
-
             assert len(completion_id) == len(problems), "Missing problems in samples"
 
             def stucking_checker():

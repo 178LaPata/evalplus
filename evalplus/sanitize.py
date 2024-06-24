@@ -172,7 +172,7 @@ def script(
     # task_id -> entry_point
     entry_point = {}
     # merge two datasets
-    dataset = {**get_human_eval_plus(), **get_mbpp_plus(version=mbpp_version)}
+    dataset = {**get_mbpp_plus()}
 
     for task_id, problem in dataset.items():
         entry_point[task_id] = problem["entry_point"]
