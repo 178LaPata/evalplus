@@ -6,7 +6,7 @@ from typing import Any, Dict, List
 from rich.progress import track
 
 from evalplus.eval.utils import swallow_io
-from evalplus.evaluate import evaluate
+from benchmarks.evalplus.evalplus.evaluate_mbpp import evaluate
 from tools.tsr.utils import (
     clean,
     execute_cmd,

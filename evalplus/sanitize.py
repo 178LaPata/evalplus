@@ -210,8 +210,8 @@ def script(
         if "solution" in solution:
             old_code = solution["solution"]
         else:
-            assert "completion" in solution
-            old_code = dataset[task_id]["prompt"] + "\n" + solution["completion"]
+            assert "generation" in solution
+            old_code = dataset[task_id]["prompt"] + "\n" + solution["generation"]
 
         new_code = sanitize(code=old_code, entrypoint=function_name)
 
@@ -223,7 +223,7 @@ def script(
             print(msg)
             nsan += 1
 
-        new_solutions.append({"task_id": task_id, "solution": new_code})
+        new_solutions.append({"task_id": task_id, "generation": new_code})
 
     if is_folder:
         write_directory(target_path, new_solutions)

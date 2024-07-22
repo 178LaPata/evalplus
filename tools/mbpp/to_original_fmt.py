@@ -22,7 +22,7 @@ from evalplus.eval._special_oracle import (
     MBPP_OUTPUT_NOT_NONE_TASKS,
     MBPP_OUTPUT_SET_EQ_TASKS,
 )
-from evalplus.evaluate import get_groundtruth
+from benchmarks.evalplus.evalplus.evaluate_mbpp import get_groundtruth
 
 MBPP_TEST_TEMPLATE = """\
 {imports}

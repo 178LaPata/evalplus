@@ -191,7 +191,7 @@ def evaluate(flags):
                 solution = (
                     sample["solution"]
                     if "solution" in sample
-                    else problems[task_id]["prompt"] + sample["completion"]
+                    else problems[task_id]["prompt"] + sample["generation"]
                 )
                 remainings.add(sample["_identifier"])
                 args = (

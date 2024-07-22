@@ -14,7 +14,7 @@ from evalplus.data.humaneval import (
 )
 from evalplus.eval import is_floats
 from evalplus.eval._special_oracle import _poly
-from evalplus.evaluate import get_groundtruth
+from benchmarks.evalplus.evalplus.evaluate_mbpp import get_groundtruth
 
 HUMANEVAL_TEST_TEMPLATE = """\
 {imports}

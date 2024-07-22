@@ -46,8 +46,8 @@ def script(
         if task_id not in id2solutions:
             id2solutions[task_id] = []
         if "solution" not in solution:
-            assert "completion" in solution, "solution or completion must exist!"
-            solution["solution"] = dataset[task_id]["prompt"] + solution["completion"]
+            assert "generation" in solution, "solution or generation must exist!"
+            solution["solution"] = dataset[task_id]["prompt"] + solution["generation"]
         id2solutions[task_id].append(solution)
 
     print(colored("==============================", "blue"))

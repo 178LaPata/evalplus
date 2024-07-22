@@ -157,8 +157,8 @@ def script(
         if "solution" in solution:
             old_code = solution["solution"]
         else:
-            assert "completion" in solution
-            old_code = dataset[task_id]["prompt"] + "\n" + solution["completion"]
+            assert "generation" in solution
+            old_code = dataset[task_id]["prompt"] + "\n" + solution["generation"]
 
         old_code = old_code.strip()
 

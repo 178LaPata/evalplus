@@ -18,7 +18,7 @@ from evalplus.data import (
 )
 from evalplus.eval import PASS
 from evalplus.evalperf import check_solution
-from evalplus.evaluate import get_groundtruth
+from benchmarks.evalplus.evalplus.evaluate_mbpp import get_groundtruth
 
 
 def find_calls(source, functors, skip_main_fn=True):
