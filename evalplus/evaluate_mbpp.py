@@ -297,10 +297,18 @@ def evaluate(flags):
                 )
             )
     base_correct = np.array(base_correct)
+    k_max_value = flags.k_max_value
+    ks = []
+    if k_max_value >= 1:
+        ks.append(1)
+    if k_max_value >= 10:
+        ks.append(10)
+    if k_max_value >= 100:
+        ks.append(100)
 
     pass_at_k = {
         f"pass@{k}": estimate_pass_at_k(total, base_correct, k).mean()
-        for k in [1, 10, 100]
+        for k in ks
         if total.min() >= k
     }
     cprint(f"{flags.dataset} (base tests)", "red")
@@ -311,7 +319,7 @@ def evaluate(flags):
         cprint(f"{flags.dataset}+ (base + extra tests)", "green")
         pass_at_k = {
             f"pass@{k}": estimate_pass_at_k(total, np.array(new_correct), k).mean()
-            for k in [1, 10, 100]
+            for k in ks
             if (total >= k).all()
         }
         for k, v in pass_at_k.items():
@@ -355,6 +363,9 @@ def main():
     )
     parser.add_argument(
         "--version", default="default", type=str, help="Version of the dataset"
+    )
+    parser.add_argument(
+        "--k_max_value", default="default", type=int, help="K max value for pass@k metric: only supported k = 1, 10 and 100"
     )
     args = parser.parse_args()
 
