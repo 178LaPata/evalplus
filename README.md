@@ -1,3 +1,15 @@
+### Revised Version of Evalplus for MSc Thesis: "Towards a Platform for Benchmarking Large Language Models"
+#### University of Minho - 2023/2024
+
+Key updates from the original version:
+- JSON sample files now have updated fields: instead of `{"task_id": YYY, "solution": ZZZ}`, they now include `{"task_id": YYY, "generation": ZZZ}`.
+- The `k` parameter for the pass@k metric is now provided as an argument, preventing the calculation of all pass@k metrics regardless of the number of prompts. The following calculations are now possible:
+  - If `k = 1`, it calculates pass@1.
+  - If `k = 10`, it calculates pass@1 and pass@10.
+  - If `k = 100`, it calculates pass@1, pass@10, and pass@100.
+
+
+
 # `EvalPlus(📖) => 📚`
 
 <p align="center">
