@@ -1,5 +1,4 @@
-### Revised Version of Evalplus for MSc Thesis: "Towards a Platform for Benchmarking Large Language Models"
-#### University of Minho - 2023/2024
+### Revised Version of Evalplus
 
 Key updates from the original version:
 - JSON sample files now have updated fields: instead of `{"task_id": YYY, "solution": ZZZ}`, they now include `{"task_id": YYY, "generation": ZZZ}`.
