@@ -29,14 +29,14 @@ from typing import Any, Dict, List, Tuple, Union
 
 import numpy as np
 
-from eval._special_oracle import (
+from ._special_oracle import (
     MBPP_OUTPUT_NOT_NONE_TASKS,
     MBPP_OUTPUT_SET_EQ_TASKS,
     _poly,
     _digit_distance_nums,
     _surface_Area,
 )
-from eval.utils import (
+from .utils import (
     create_tempdir,
     reliability_guard,
     swallow_io,
