@@ -1,6 +1,10 @@
+import multiprocessing
+try:
+    multiprocessing.set_start_method("spawn", force=True)
+except RuntimeError:
+    pass
 import argparse
 import json
-import multiprocessing
 import os
 import pickle
 import threading
@@ -324,6 +328,7 @@ def evaluate(flags):
         }
         for k, v in pass_at_k.items():
             cprint(f"{k}:\t{v:.3f}", "green")
+    com_metrics = pass_at_k
 
     # save results
     if os.path.isfile(result_path) and flags.i_just_wanna_run:
@@ -343,8 +348,8 @@ def evaluate(flags):
     if not os.path.isfile(result_path):
         with open(result_path, "w") as f:
             json.dump(results, f)
-
-
+    
+    return com_metrics
 
 def main():
     parser = argparse.ArgumentParser()
