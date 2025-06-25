@@ -5,7 +5,7 @@ from typing import Dict
 
 import wget
 
-from data.utils import (
+from evalplus.data.utils import (
     CACHE_DIR,
     completeness_check,
     get_dataset_metadata,

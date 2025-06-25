@@ -15,23 +15,23 @@ import numpy as np
 from termcolor import cprint
 from tqdm import tqdm
 
-from data import (
+from evalplus.data import (
     get_human_eval_plus,
     get_human_eval_plus_hash,
     get_mbpp_plus,
     get_mbpp_plus_hash,
     load_solutions,
 )
-from data.mbpp import mbpp_serialize_inputs
-from data.utils import CACHE_DIR
-from eval import (
+from evalplus.data.mbpp import mbpp_serialize_inputs
+from evalplus.data.utils import CACHE_DIR
+from evalplus.eval import (
     PASS,
     compatible_eval_result,
     estimate_pass_at_k,
     untrusted_check,
 )
-from eval._special_oracle import MBPP_OUTPUT_NOT_NONE_TASKS
-from gen.util import trusted_exec
+from evalplus.eval._special_oracle import MBPP_OUTPUT_NOT_NONE_TASKS
+from evalplus.gen.util import trusted_exec
 
 # 1st item: the status
 # 2nd item (optional): the detailed pass/fail boolean for each input
@@ -343,6 +343,7 @@ def evaluate(flags):
     if not os.path.isfile(result_path):
         with open(result_path, "w") as f:
             json.dump(results, f)
+
 
 
 def main():
